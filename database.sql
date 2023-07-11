@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
   `passwortcode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `passwortcode_time` timestamp NULL DEFAULT NULL,
+  `permission_level` int(10) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`), UNIQUE (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

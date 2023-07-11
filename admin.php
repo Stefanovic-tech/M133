@@ -13,19 +13,20 @@
         if(!empty($_GET["id"])){
             require_once("inc/config.inc.php");
             require_once("inc/functions.inc.php");
-                if(isset($_POST["submit"])){
-                $statement = $pdo->prepare("UPDATE users SET email = :email WHERE ID = :id");
-                $statement->execute(array(":email" => $_POST["email"], ":id" => $_GET["id"]));
+            if (isset($_POST["submit"])) {
+                $statement = $pdo->prepare("UPDATE users SET email = :email WHERE id = :userid");
+                $result = $statement->execute(array('email' => $email));
                 ?>
                 <p>Der Benutzer wurde gespeichert.</p>
                 <?php
             }
+            
             $statement = $pdo->prepare("SELECT * FROM users WHERE id = :id");
             $statement->execute(array(":id" => $_GET["id"]));
             $row = $statement->fetch();
             ?>
             <form action="admin1.php?id=<?php echo $_GET["id"] ?>" method="post">
-                <input type="email" name="email" value="<?php echo $row["email"] ?>" placeholder="Email" require><br>
+                <input type="email" name="email" value="<?php echo $row["email"] ?>" placeholder="email" require><br>
                 <button name="submit" type="submit">Speichern</button>
             </form>
             <?php
